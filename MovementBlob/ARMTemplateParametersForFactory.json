@@ -1,0 +1,39 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "MovementBlob"
+		},
+		"AzureDataLakeStorage2_accountKey": {
+			"value": ""
+		},
+		"LS_FileContainer_connectionString": {
+			"value": ""
+		},
+		"LS_Sqlfromblob_connectionString": {
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=sqldbserver21.database.windows.net;Initial Catalog=sqldb;User ID=rajapandi"
+		},
+		"LS_blobtosql_connectionString": {
+			"value": ""
+		},
+		"AzureDataLakeStorage2_properties_typeProperties_url": {
+			"value": "https://datalakestorage21.dfs.core.windows.net/"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"value": "https://movementblobkey.vault.azure.net/"
+		},
+		"Extract_Multiple_properties_typeProperties_url": {
+			"value": "@{linkedService().baseURL}"
+		},
+		"Http_Drive_Connect_properties_typeProperties_url": {
+			"value": "@{linkedService().baseURL}"
+		},
+		"LS_Copy_Source_properties_typeProperties_url": {
+			"value": "https://cdn.wsform.com/"
+		},
+		"Event_Trigger_properties_typeProperties_scope": {
+			"value": "/subscriptions/201d7336-252e-4fdb-828d-edeaf803671b/resourceGroups/TestDataMovement/providers/Microsoft.Storage/storageAccounts/datalakestorage21"
+		}
+	}
+}
