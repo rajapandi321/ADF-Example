@@ -1,0 +1,24 @@
+{
+	"name": "SQL_TO_ADLS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Sqlfromblob",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Source_Table": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"table": {
+				"value": "@dataset().Source_Table",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

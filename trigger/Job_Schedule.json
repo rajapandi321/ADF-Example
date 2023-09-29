@@ -1,0 +1,24 @@
+{
+	"name": "Job_Schedule",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Extract Multiple",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Hour",
+				"interval": 1,
+				"startTime": "2023-09-26T15:43:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}

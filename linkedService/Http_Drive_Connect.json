@@ -1,0 +1,19 @@
+{
+	"name": "Http_Drive_Connect",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"description": "To Connect to Google Drive to get the data",
+		"parameters": {
+			"baseURL": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "HttpServer",
+		"typeProperties": {
+			"url": "@{linkedService().baseURL}",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}

@@ -1,0 +1,12 @@
+{
+	"name": "LS_FileContainer",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"connectionString": "DefaultEndpointsProtocol=https;AccountName=blobmovement;EndpointSuffix=core.windows.net;",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQDJENTQ2NUFELTUyMTAtNDk3MS04QzU0LUMxMUZDM0UwNTE3Ml80ZWJkY2EyOC0wOTllLTRhYjMtYjYwOS0xODVjMjYwMGIyMmUiDQp9"
+		}
+	}
+}

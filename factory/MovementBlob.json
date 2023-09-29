@@ -1,0 +1,9 @@
+{
+	"name": "MovementBlob",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "62b4e0aa-879a-40ac-948a-3a2901038d99",
+		"tenantId": "8014c449-8ca0-4b14-a316-85f6aa59cbec"
+	}
+}

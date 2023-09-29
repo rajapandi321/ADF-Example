@@ -1,0 +1,19 @@
+{
+	"name": "LS_Sqlfromblob",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=sqldbserver21.database.windows.net;Initial Catalog=sqldb;User ID=rajapandi",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AzureKeyVault1",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "SQLPass"
+			}
+		}
+	}
+}

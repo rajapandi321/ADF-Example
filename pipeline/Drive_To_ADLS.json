@@ -1,0 +1,108 @@
+{
+	"name": "Drive_To_ADLS",
+	"properties": {
+		"activities": [
+			{
+				"name": "Source_To_Dest",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Set variable1",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "HttpReadSettings",
+							"requestMethod": "GET"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Drive_dataset",
+						"type": "DatasetReference",
+						"parameters": {
+							"BaseURL": {
+								"value": "@variables('Base_URL_PP')",
+								"type": "Expression"
+							},
+							"RelativeURL": {
+								"value": "@variables('Relative_URL_PP')",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ADLS_Drive",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "Relative_URL_PP",
+					"value": "wp-content/uploads/2020/06/time.csv"
+				}
+			}
+		],
+		"variables": {
+			"Base_URL_PP": {
+				"type": "String",
+				"defaultValue": "https://cdn.wsform.com/"
+			},
+			"Relative_URL_PP": {
+				"type": "String",
+				"defaultValue": "wp-content/uploads/2020/12/timezone.csv"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-09-25T15:53:07Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
