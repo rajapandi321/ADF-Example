@@ -1,0 +1,76 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText1",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Parquet1",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "select1"
+				},
+				{
+					"name": "aggregate1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Date as string,",
+				"          Symbol as string,",
+				"          Series as string,",
+				"          {Prev Close} as string,",
+				"          Open as string,",
+				"          High as string,",
+				"          Low as string,",
+				"          Last as string,",
+				"          Close as string,",
+				"          VWAP as string,",
+				"          Volume as string,",
+				"          Turnover as string,",
+				"          Trades as string,",
+				"          {Deliverable Volume} as string,",
+				"          {%Deliverble} as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 select(mapColumn(",
+				"          Symbol,",
+				"          Series,",
+				"          Prev_Close = {Prev Close},",
+				"          Open,",
+				"          Close,",
+				"          Deliverable_Volume = {Deliverable Volume}",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 aggregate(groupBy(Symbol),",
+				"     MinClose = min(Prev_Close),",
+				"          MaxClose = max(Prev_Close)) ~> aggregate1",
+				"aggregate1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     partitionFileNames:['file.parquet'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
+			]
+		}
+	}
+}
